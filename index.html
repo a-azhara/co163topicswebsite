@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale = 1, user-scalable = 0">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Spectral" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+		$("a").on('click', function(event) {
+
+			if (this.hash !== "") {
+				event.preventDefault();
+
+				// Store hash
+				var hash = this.hash;
+
+				$('html, body').animate({
+					scrollTop: $(hash).offset().top
+				}, 800, function(){
+
+
+					window.location.hash = hash;
+				});
+			}
+		});
+	});
+	</script>
+	<script src="css/bootstrap.js"></script>
+	<link rel=<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Query Obfuscation for Web
+		Search</title>
+	</div>
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="100">
+	<div class="wrapper">
+
+		<nav class="navbar navbar-expand-lg navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsedNavBar"
+					aria-expanded="false">
+						<div class="button-collapse">
+							<span class="sr-only">Toggle
+								navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</div>
+					</button>
+				</div>
+				<div class="collapse navbar-collapse" id="collapsedNavBar">
+					<ul class="nav navbar-nav">
+						<li><a href="#sectionHome">Query
+								Obfuscation for Web Search</a></li>
+						<li><a href="#section1">About
+								Florimond</a></li>
+						<li><a href="#section2">Overview</a></li>
+						<li><a href="#section3">Indistinguishability</a></li>
+						<li><a href="#section4">Coverage</a></li>
+						<li><a href="#section5">Imprecision</a></li>
+						<li><a href="#section6">Analysis</a></li>
+						<li><a href="#section7">Credits</a></li>
+					</ul>
+				</div>
+			</div>
+
+		</nav>
+		<div id="sectionHome" class="container-fluid">
+			<div class="parallax background1">
+				<br><br><br><br><br>
+				<h1 id="title" class="blackfont"><b>Query
+						Obfuscation for Web Search</b></h1>
+				<br>
+			</div>
+		</div>
+
+		<br><br><br><br><br><br><br><br><br><br>
+
+		<div id="section1" class="container-fluid"><br><br>
+			<h1 class="title-flo">About
+				Florimond</h1>
+			<br>
+			<div class="row">
+				<div class="container-fluid">
+					<img src="https://www.doc.ic.ac.uk/~aa19418/css/img/florimond.png" alt="Picture of Florimond" class="florimond-img analysis-icon"></div>
+				<div class="container-fluid"><br>
+					<h2 class="title-flo"><b><i>Florimond
+								Houssiau</i></b></h2>
+					<h2 class="title-flo"><i>A
+							researcher at Imperial College
+							London</i></h2><br>
+					<p>Florimond received his
+						Bachelor's degree in
+						Engineering at UCLouvain in 2015
+						before he pursued graduate studies
+						in applied mathematics at
+						the same institution. After an
+						internship at MIT's Media Lab,
+						Florimond received
+						his MSc in applied mathematics
+						from UCLouvain in 2017.</p>
+					<p>Florimond is currently a
+						second-year Ph.D. student at
+						Imperial College London (ICL).
+						He is also a member of the
+						<a href="https://cpg.doc.ic.ac.uk/" target="_blank">Computational
+							Privacy Group</a> which is led
+						by an assistant professor at
+						ICL,
+						Yves-Alexandre de
+						Montjoye. His research interests
+						include privacy risks in web
+						search data and the impact of
+						networked environments on
+						privacy.<a href="#ref1"><sup>[1]</sup></a>
+					</p>
+					<br>
+					<h2>Publications</h2>
+
+					<ul class="bullets">
+						<li><a href="https://arxiv.org/abs/1803.09007" target="_blank">Quantifying
+								Surveillance in the Networked
+								Age: Node-based
+								Intrusions and Group Privacy</a>
+						<li><a href="https://arxiv.org/abs/1804.06752" target="_blank">When
+								the signal is in the noise:
+								The
+								limits of Diffix's sticky
+								noise</a>
+					</ul>
+					<br>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div id="section2" class="container-fluid">
+			<div class="parallax background2">
+				<br><br><br><br>
+				<h1 class="blackfont"><b>Overview</b></h1><br>
+				<br>
+			</div>
+			<br><br>
+			<h2>Problem</h2>
+			<p>Every day, millions of people
+				use search engines on their smart
+				devices
+				to find information they need on
+				the
+				web. These requests are called
+				queries,
+				and contain one or more keywords
+				on the topic of interest. In
+				order to
+				personalise their search, web
+				search service providers keep a
+				record
+				of
+				the user's information, such as
+				their previous queries, current
+				location
+				and
+				cookies.</p>
+			<p>However, submitted search queries
+				may
+				potentially
+				contain sensitive information about
+				the user such as health problems or
+				income level.<a href="#ref2"><sup>[2]</sup></a>
+				The leakage of
+				this information to search engines
+				has led to widespread privacy
+				infringement and
+				remains a pressing issue today.</p><br>
+			<div class="container-fluid">
+				<img src="https://www.doc.ic.ac.uk/~aa19418/css/img/icons-soln.png" alt="Possible Solution" class="lorimond-img analysis-icon">
+			</div>
+			<br>
+			<h2>Solution</h2>
+			<p>One proposed solution to
+				this problem is query obfuscation.
+				It is
+				the process of sending out the real
+				search query together with many
+				dummy
+				(fake) queries to the search engine
+				or adversary, thus, hindering the
+				identification of the original
+				query. This makes it difficult to
+				profile
+				the user and retrieve any sensitive
+				data about them.</p>
+			<p>Although
+				the
+				topic of query obfuscation is still
+				under-researched, there exists a
+				real
+				world obfuscator called TrackMeNot
+				which was created by a team of
+				researchers from New York
+				University in 2006.<a href="#ref3"><sup>[3]</sup></a>
+				TrackMeNot is a browser plugin that
+				performs query obfuscation and can
+				be
+				applied to the majority of web
+				search service providers. The
+				software
+				works by periodically sending
+				queries to popular search engines. However, according to
+				the Chrome<a href="#ref4"><sup>[4]</sup></a>
+				and
+				FireFox<a href="#ref5"><sup>[5]</sup></a>
+				Web
+				Stores, TrackMeNot remains
+				unpopular as there are only 40, 937
+				users (as of 29 January 2019).
+				Moreover, it is ineffective as adversaries can easily
+				expose its "noisy" queries via
+				machine
+				learning.<a href="#ref6"><sup>[6]</sup></a>
+			</p><br>
+			<div class="container-fluid">
+				<img src="https://www.doc.ic.ac.uk/~aa19418/css/img/icons-hypothesis.png" alt="Hypothesis" class="lorimond-img analysis-icon">
+			</div>
+			<br>
+			<h2>Hypothesis</h2>
+			<p>In theory, query obfuscation is
+				a viable solution to prevent user
+				profiling. However, in practice,
+				it is highly challenging to create
+				an effective query obfuscator that
+				would eliminate the problem
+				completely.</p>
+			<p>The
+				following pages describe the 3
+				elementary requirements of a
+				query
+				obfuscator, as well as explain the
+				reasoning behind the above
+				hypothesis.</p>
+		</div>
+		<br><br>
+		<div id="section3" class="container-fluid">
+			<div class="parallax background3">
+				<br><br><br><br>
+				<h1 class="blackfont"><b>1.
+						Indistinguishability</b></h1><br><br><br>
+			</div>
+			<br><br>
+			<p class="requirement">The first
+				fundamental requirement
+				for a query obfuscator is
+				<b>indistinguishability</b>.</p>
+			<p>An
+				obfuscator aims to obscure the true
+				query, and one way of achieving this is
+				to create a few dummy queries and
+				hide
+				the original within them.</p>
+			<p>However,
+				most people tend to have a certain
+				writing style, which is described
+				by
+				their language habits and search
+				patterns. As such, if the obfuscator
+				uses a standard query-generating
+				algorithm, it will be relatively
+				easy for adversaries to pick out
+				the
+				true
+				query. </p>
+			<p>Take an example of a
+				teenager who often uses
+				catchphrases
+				and
+				abbreviations. He might search "wht
+				does quary obfuscators acc do",
+				which
+				contains typographical errors,
+				abbreviations and grammar mistakes.
+				Then his
+				query obfuscator generates various
+				'standard' dummy queries (e.g. "Which
+				is
+				the brightest star in the night
+				sky?") and sends them to the search
+				engine.
+				However, since the search engine
+				adversary
+				is able to extract his writing
+				style
+				from his previous queries, it can
+				determine the original request. </p>
+			<br>
+			<video controls muted>
+				<source src="https://www.doc.ic.ac.uk/~aa19418/css/img/indist_without.mp4" class="video">Your browser does
+				not
+				support the video tag. </video>
+			<p class="caption">An example of
+				query obfuscation without
+				indistinguishability</p>
+			<br>
+			<p>Hence,
+				the obfuscator must generate
+				dummy queries that are
+				indistinguishable from the true
+				query. In general,
+				the obfuscator can achieve this by learning the
+				user's writing style and using it in
+				the query-generating algorithm. In this case,
+				the tool could send requests such
+				as
+				"events nearby 2nite" which uses
+				shorthand popular among teenagers.</p>
+
+			<p>Moreover,
+				the dummy queries should be sent at
+				times that match with the user's
+				habits.
+				People tend to send a burst
+				of search requests on one topic.
+				For
+				instance, one might send a request
+				"Where is the closest restaurant?", and
+				then search reviews on the
+				restaurant found. Thus, if the
+				obfuscator
+				randomly generates sets of searches
+				that go against this logic, it
+				becomes a
+				simple task for the adversary to
+				pick out the true query.</p><br><video controls muted>
+				<source src="https://www.doc.ic.ac.uk/~aa19418/css/img/indist_with.mp4" class="video">Your browser does
+				not
+				support the video tag. </video>
+			<p class="caption">An example of
+				query obfuscation with
+				indistinguishability</p>
+			<br>
+			<p>Consequently,
+				the query obfuscator must
+				achieve indistinguishability by
+				incorporating the user's writing
+				style and
+				habits into its algorithm.</p>
+		</div>
+		<br><br>
+		<div id="section4" class="container-fluid">
+			<div class="parallax background4">
+				<br><br><br><br>
+				<h1 class="whitefont"><b>2.
+						Coverage</b></h1><br>
+			</div>
+			<br><br>
+			<p class="requirement">The second
+				elementary prerequisite is <b>coverage</b>.</p>
+			<p>The dummy queries created by the
+				obfuscator should cover a variety
+				of topics to make it difficult for
+				the adversaries to profile the
+				user.
+			</p>
+			<p>For example, a user who wants to
+				buy a flight ticket to Berlin,
+				Germany, may type “tickets to
+				Berlin” in the search bar. The
+				query obfuscator could produce many
+				queries with different
+				typographical errors such as “tckts
+				brn” or “tikets t
+				berln”. However, the search engine
+				would still be able to conclude
+				that all these queries are
+				essentially about the same topic,
+				which is “tickets to Berlin”.
+			</p><br><video controls muted>
+				<source src="https://www.doc.ic.ac.uk/~aa19418/css/img/coverage_without.mp4" class="video">Your browser does
+				not
+				support the video tag. </video>
+			<p class="caption">An example of
+				query obfuscation without coverage</p>
+			<br>
+
+			<p>Take another scenario where this
+				user’s query obfuscator sends more
+				varied queries such as “what to do
+				in Paris”, “tickets to Brussels” or
+				“sightseeing in Vienna”. Even
+				though these queries are
+				technically different, the search
+				engine would
+				still recognise that this
+				particular user is planning to
+				travel in Europe. Therefore, these
+				requests will not be able to fully
+				protect the user’s privacy.
+			</p>
+			<br>
+			<video controls muted>
+				<source src="https://www.doc.ic.ac.uk/~aa19418/css/img/coverage_with.mp4" class="video">Your browser does
+				not
+				support the video tag. </video>
+			<p class="caption">An example of
+				query obfuscation with coverage</p>
+			<br>
+			<p>Hence, in both cases, the query
+				obfuscator should generate queries
+				that are unrelated to Europe,
+				travelling and flights, so that it
+				is more difficult for the web
+				search engine to determine the user
+				profile.
+			</p>
+			<p>In general, a successful
+				obfuscator should be able to create
+				a set of dummy queries about many
+				topics that are distinct from one
+				another. It is essential to
+				implement this feature as its
+				absence would result in an
+				ineffective obfuscator which
+				does not secure users’ information.</p>
+		</div>
+		<br>
+		<br>
+
+
+		<div id="section5" class="container-fluid">
+			<div class="parallax background5">
+				<br><br><br><br>
+				<h1 class="whitefont"><b>3.
+						Imprecision</b></h1><br>
+			</div>
+			<br><br>
+			<p class="requirement">The third
+				basic requirement for a query
+				obfuscator is <b>imprecision</b>.
+			</p>
+			<p>Most of us have a search history
+				with the major search engines on
+				the web. With this background
+				information about us, adversaries
+				can still pick out the true query
+				with relative ease, unless the
+				obfuscator takes steps against
+				this.
+			</p>
+			<p>Take an example of an office
+				worker. During work, they may search
+				“how to use countif in excel”.
+				Their query obfuscator then
+				generates a range of dummy queries,
+				such as “how to knit beanie” or
+				“plane tickets t las vegas”, to
+				deceive the search
+				engine adversary.
+			</p>
+			<br><video controls muted>
+				<source src="https://www.doc.ic.ac.uk/~aa19418/css/img/imprecise_without.mp4" class="video">Your browser does
+				not
+				support the video tag. </video>
+			<p class="caption">An example of
+				query obfuscation without
+				imprecision</p>
+			<br>
+			<p>However, the adversary knows that
+				just last week, this worker had
+				searched “how to make macros in
+				excel” and “what is excel”. It also
+				knows the worker’s IP address and
+				hence approximate location in the
+				business district of the city. With
+				this
+				information on hand, it is now much
+				easier for the adversary to
+				identify the original query.
+			</p>
+			<p>Moreover, the search engine still
+				profits even if it cannot identify
+				the precise true query. In this
+				situation, it can profile the
+				worker as someone interested in
+				spreadsheet software; in a way,
+				their personal information has been
+				leaked
+				nevertheless.
+			</p>
+			<br><video controls muted>
+				<source src="https://www.doc.ic.ac.uk/~aa19418/css/img/imprecise_with.mp4" class="video">Your browser does
+				not
+				support the video tag. </video>
+			<p class="caption">An example of
+				query obfuscation with imprecision</p>
+			<br>
+			<p>Therefore, a functional query
+				obfuscator must generate dummy
+				queries with topics similar to
+				those in the true one. In this
+				case, it could send searches about
+				other office software, such as
+				“crop picture in word” and “add
+				account to outlook
+				how”. With the range of topics now
+				narrowed down, it becomes much more
+				difficult for the adversary to pick
+				out the true query with high
+				confidence.
+			</p>
+		</div>
+		<br><br>
+		<div id="section6" class="container-fluid">
+			<div class="parallax background6">
+				<br><br><br><br>
+				<h1 class="whitefont"><b>Analysis</b></h1><br>
+				<br>
+			</div>
+			<br><br>
+
+			<div class="container-fluid">
+				<p>However, in reality these three
+					fundamental prerequisites
+					are extremely difficult to achieve
+					all at once. As such,
+					successful query obfuscation still
+					remains out of our reach.
+				</p><br>
+				<div class="container-fluid">
+					<img src="https://www.doc.ic.ac.uk/~aa19418/css/img/analysis-icons_indist.png" alt="Analysis Indistinguishability" class="florimond-img analysis-icon">
+				</div>
+				<div class="container-fluid">
+					<br>
+					<p class="requirement">Firstly,
+						true indistinguishability is a
+						daunting challenge.</p>
+					<p>At present, human behaviour
+						still cannot be modeled by
+						computers with convincing
+						success. A query obfuscator would
+						need to mimic the user’s grammar,
+						language habits and search
+						patterns, all of which may not
+						conform to an obvious pattern.
+						If the software instead applies a
+						one-size-fits-all approach to its
+						users, an adversary can easily
+						pick out the ‘standard’ dummy
+						queries from the user’s more
+						personalised queries.
+					</p>
+					<p>As such, there is no practical
+						way of generating the sheer
+						number of indistinguishable dummy
+						queries needed by a working
+						obfuscator.
+					</p><br>
+				</div>
+				<div class="container-fluid">
+					<img src="https://www.doc.ic.ac.uk/~aa19418/css/img/analysis-icons_coverage_imprecision.png" alt="Analysis Coverage and Imprecision" class="florimond-img analysis-icon">
+				</div>
+				<div class="container-fluid">
+					<br>
+					<p class="requirement">Next, there
+						is a fundamental tension between
+						achieving both
+						coverage and imprecision.
+					</p>
+					<p>Coverage requires the
+						obfuscator to submit dummy
+						queries on
+						a range of topics, lest the
+						adversary manages to profile the
+						user.
+					</p>
+					<p>However, imprecision requires
+						the software to submit queries
+						with topics similar to the
+						true search’s, such that the
+						adversary cannot pick out the
+						true query even with existing
+						information about the user.
+					</p>
+					<p>As such, in order to achieve
+						both coverage and imprecision,
+						an impractically large number of
+						dummy queries is needed to
+						disguise just a single query.
+					</p><br>
+
+					<div class="container-fluid">
+						<img src="https://www.doc.ic.ac.uk/~aa19418/css/img/analysis-icons-othersolns.png" alt="Analysis Other Solutions" class="lorimond-img analysis-icon">
+					</div>
+					<br>
+					<p>Hence, due to the numerous
+						challenges stacked against it,
+						it is unlikely that query
+						obfuscation will be effective in fully protecting
+						 users' privacy.
+					</p>
+					<p class="requirement">However,
+						other methods of privacy
+						protection may hold more promise.</p>
+					<p>
+						For instance, anonymisation
+						networks can disguise the source
+						of a user’s queries by leveraging
+						on other users in the network.
+						One example of these networks is
+						a mix network, which receives
+						queries from multiple users using
+						the network and
+						shuffles them before passing them
+						to the next mix node in the
+						chain. <a href="#ref7"><sup>[7]</sup></a>
+						This shuffling process is then
+						repeated at every mix node of the
+						network before the queries
+						finally reach the search engine.
+					</p>
+					</p>
+					<p>Each node only possesses
+						information on who sent it the
+						queries, and
+						who to send the mixed queries to
+						next. As such, by the time the
+						queries reach the search engine,
+						it is now highly difficult for
+						the adversary to trace the
+						original writers of each query.
+						In comparison to query
+						obfuscation, this eliminates the
+						need to model human behaviour to
+						reach a similar outcome.
+					</p>
+					<p>Nevertheless, there still exist
+						ways to attack anonymisation
+						networks,
+						thus additional countermeasures
+						must be implemented for these
+						methods to succeed in maintaining
+						privacy. Even so, compared to
+						query obfuscation, such methods
+						are more likely to be feasible in
+						achieving privacy protection in
+						the near future.
+					</p>
+				</div>
+				<br><br>
+				<div id="section7" class="container-fluid">
+					<div class="parallax background7">
+						<br><br><br><br>
+						<h1 class="whitefont"><b>Credits</b></h1><br>
+						<br>
+					</div>
+					<br><br>
+					<p>This website is made by Azhara
+						Assanova, Avril Wong Hui Ning and
+						Lize Lu under the help of
+						Florimond Houssiau, as part of the Computing Topics course assignment.
+					</p><br>
+					<h2>References</h2>
+					<div class="references">
+						<ol class="bullets">
+							<li id="ref1"> <span>Florimond
+									Houssiau [Internet]. Codiax.
+									[cited 2019Feb5]. Available
+									from: <a href="https://codiax.co/speakers/florimond-houssiau/" target="_blank">[Link]</a></span>
+							</li>
+							<li id="ref2"><span> An
+									introduction to biometric
+									recognition - IEEE Journals &
+									Magazine. Wiley-IEEE Press;
+									[cited 2019Feb5]. Available
+									from: <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=6234432" target="_blank">[Link]</a></span></li>
+							<li id="ref3"> <span>Howe DC.
+									[Internet]. Srinivasa
+									Ramanujan. [cited 2019Feb5].
+									Available from: <a href="https://cs.nyu.edu/trackmenot" target="_blank">[Link]</a></span></li>
+							<li id="ref4"><span> TrackMeNot
+									[Internet]. Google. Google;
+									[cited 2019Feb5]. Available
+									from: <a href="https://chrome.google.com/webstore/detail/trackmenot/cgllkjmdafllcidaehjejjhpfkmanmka?hl=en" target="_blank">[Link]</a></span></li>
+							<li id="ref5"><span> TrackMeNot
+									by Daniel Howe, Helen
+									Nissenbaum, Janoss [Internet].
+									Firefox Multi-Account
+									Containers – Add-ons for
+									Firefox. 2006 [cited
+									2019Feb5]. Available from: <a href="https://addons.mozilla.org/en-US/firefox/addon/trackmenot/?src=sarc" target="_blank">[Link]</a></span></li>
+							<li id="ref6"> <span>Peddinti
+									ST, Saxena N. On the Privacy
+									of Web Search Based on Query
+									Obfuscation: A Case Study of
+									TrackMeNot [Internet].
+									SpringerLink. springer; 2010
+									[cited 2019Feb5]. Available
+									from: <a href="https://link.springer.com/chapter/10.1007/978-3-642-14527-8_2" target="_blank">[Link]</a></span></li>
+							<li id="ref7"><span> Franklin
+									MK. Mix Networks [Internet].
+									SpringerLink. springer; 1970
+									[cited 2019Feb8]. Available
+									from: <a href="https://link.springer.com/referenceworkentry/10.1007/0-387-23483-7_257" target="_blank">[Link]</a></span></li>
+						</ol>
+					</div>
+				</div>
+				<br><br><br>
+			</div>
+</body>
+
+</html>
